@@ -27,3 +27,43 @@
 - **Бэкенд:** Python, Django (админ-панель, шаблоны, работа с данными)
 - **Фронтенд:** HTML5, CSS3 (разметка страницы и стили)
 - **Иконки:** Font Awesome 6
+
+---
+
+## Как запустить
+1. Клонируйте репозиторий или скачайте его файлы
+```bash
+git clone https://github.com/Lutik72/Django_Project.git
+```
+2. Создайте виртуальное окружение и активируйте его
+```bash
+python -m venv venv # создать
+
+venv\Scripts\activate # активировать
+```
+3. Установите зависимости
+```bash
+pip install -r requirements.txt
+```
+4. Примените миграции
+```bash
+python manage.py migrate
+```
+5. Создайте суперпользователя для входа в админку
+```bash
+python manage.py createsuperuser
+```
+6. Запустите сервер
+```bash
+python manage.py runserver
+```
+
+### Если возникли ошибки
+```bash
+# Проверить миграции
+python manage.py makemigrations
+python manage.py migrate
+
+# Собрать статические файлы
+python manage.py collectstatic
+```
