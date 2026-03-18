@@ -1,0 +1,85 @@
+# Виртуальное окружение
+venv
+
+# База данных
+*.sqlite3
+*.db
+db.sqlite3
+*.sql
+
+# Python кэш и байткод
+__init__.py
+__pycache__/
+.pytest_cache/
+
+
+# Django
+*.log
+local_settings.py
+media/
+staticfiles/
+static_root/
+uploads/
+
+# Секреты и конфиденциальные данные
+.env
+.env.local
+.env.production
+.env.development
+.env.staging
+*.pem
+*.key
+*.crt
+*.p12
+config.json
+credentials.json
+secrets.json
+
+# IDE и редакторы
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+Thumbs.db
+desktop.ini
+.vscode-server/
+
+# Статические и медиа файлы (пользовательские загрузки)
+/media/
+/staticfiles/
+/static_root/
+
+# Тестирование и покрытие кода
+.coverage
+htmlcov/
+.tox/
+.coverage.*
+*.cover
+.pytest_cache/
+coverage.xml
+*.report
+
+# Логи
+*.log
+logs/
+**/logs/
+
+# Докер (если используете)
+*.pid
+Dockerfile.dockerignore
+.dockerignore
+
+# Документация
+docs/_build/
+site/
+
+# Файлы настроек окружения
+.python-version
+.python-version.local
+.python-version.remote
+
+# Миграции (обычно коммитят, но можно добавить если не нужны)
+# **/migrations/*.py
+# !**/migrations/__init__.py

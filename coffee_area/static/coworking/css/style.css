@@ -1,0 +1,367 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #faf3e0;
+    color: #5e4b3c;
+    line-height: 1.6;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+header {
+    background-color: #ffe4e1;
+    padding: 30px 0;
+    border-radius: 0 0 30px 30px;
+    box-shadow: 0 4px 15px rgba(233, 196, 176, 0.3);
+    margin-bottom: 40px;
+}
+
+h1 {
+    font-size: 2.5em;
+    color: #8b6b4d;
+    margin-bottom: 10px;
+    text-align: center;
+    font-weight: 300;
+    letter-spacing: 2px;
+}
+
+.subtitle {
+    text-align: center;
+    color: #b1947a;
+    font-style: italic;
+}
+
+nav {
+    background-color: #fff5ee;
+    padding: 15px;
+    border-radius: 50px;
+    margin: 20px 0;
+    text-align: center;
+}
+
+nav a {
+    color: #8b6b4d;
+    text-decoration: none;
+    margin: 0 25px;
+    font-size: 1.2em;
+    padding: 10px 20px;
+    border-radius: 30px;
+    transition: all 0.3s ease;
+}
+
+nav a:hover {
+    background-color: #ffd9d4;
+    color: #5e4b3c;
+}
+
+.hero {
+    background-color: #fff0e7;
+    border-radius: 30px;
+    padding: 60px 40px;
+    margin: 40px 0;
+    text-align: center;
+    box-shadow: 0 6px 20px rgba(210, 180, 140, 0.2);
+}
+
+.hero h2 {
+    font-size: 2em;
+    color: #8b6b4d;
+    margin-bottom: 20px;
+    font-weight: 300;
+}
+
+.hero p {
+    font-size: 1.2em;
+    max-width: 800px;
+    margin: 0 auto 30px;
+    color: #7a5c44;
+}
+
+.features {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 30px;
+    margin: 50px 0;
+}
+
+.feature-card {
+    background-color: #fff9f0;
+    padding: 30px 20px;
+    border-radius: 25px;
+    text-align: center;
+    box-shadow: 0 4px 15px rgba(218, 184, 170, 0.2);
+    transition: transform 0.3s ease;
+}
+
+.feature-card:hover {
+    transform: translateY(-5px);
+    background-color: #ffeae5;
+}
+
+.feature-card h3 {
+    color: #8b6b4d;
+    margin-bottom: 15px;
+    font-size: 1.5em;
+    font-weight: 400;
+}
+
+.feature-card p {
+    color: #a3876f;
+}
+
+.feature-icon {
+    font-size: 3em;
+    margin-bottom: 15px;
+}
+
+.btn {
+    display: inline-block;
+    background-color: #ffd9d4;
+    color: #5e4b3c;
+    padding: 12px 35px;
+    text-decoration: none;
+    border-radius: 50px;
+    font-size: 1.1em;
+    transition: all 0.3s ease;
+    border: 1px solid #ecc9c0;
+}
+
+.btn:hover {
+    background-color: #ffc9c1;
+    transform: scale(1.05);
+}
+
+footer {
+    background-color: #ffe4e1;
+    padding: 30px 0;
+    border-radius: 30px 30px 0 0;
+    margin-top: 60px;
+    text-align: center;
+    color: #8b6b4d;
+}
+
+/* Стили для страницы коворкинга */
+.coworking-hero {
+    background-color: #fff0e7;
+    border-radius: 30px;
+    padding: 50px 30px;
+    margin: 30px 0 40px;
+    text-align: center;
+    background-image: linear-gradient(135deg, #fff0e7 0%, #ffe4e1 100%);
+}
+
+.coworking-hero h2 {
+    font-size: 2.3em;
+    color: #8b6b4d;
+    margin-bottom: 15px;
+    font-weight: 300;
+}
+
+.coworking-hero p {
+    font-size: 1.3em;
+    color: #a3876f;
+    max-width: 700px;
+    margin: 0 auto;
+}
+
+.coworking-description {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+    align-items: center;
+    margin: 60px 0;
+    background-color: #fff9f0;
+    border-radius: 40px;
+    padding: 30px;
+}
+
+.description-text h3 {
+    color: #8b6b4d;
+    font-size: 1.8em;
+    font-weight: 400;
+    margin-bottom: 20px;
+}
+
+.description-text p {
+    color: #7a5c44;
+    margin-bottom: 15px;
+    font-size: 1.1em;
+}
+
+.description-text p:last-child {
+    margin-bottom: 0;
+}
+
+.description-image {
+    width: 100%;
+    height: 100%;
+    min-height: 280px;
+    border-radius: 30px;
+    overflow: hidden;
+    box-shadow: 0 10px 25px rgba(210, 180, 140, 0.25);
+    border: 3px solid #ffe4e1;
+    transition: transform 0.3s ease;
+}
+
+.description-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.5s ease;
+}
+
+.coworking-features {
+    margin: 60px 0;
+}
+
+.coworking-features h3 {
+    text-align: center;
+    color: #8b6b4d;
+    font-size: 2em;
+    font-weight: 300;
+    margin-bottom: 40px;
+}
+
+.features-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
+}
+
+.coworking-card {
+    background-color: #fff5ee;
+    padding: 25px 15px;
+    border-radius: 25px;
+    text-align: center;
+    transition: all 0.3s ease;
+}
+
+.coworking-card:hover {
+    transform: translateY(-3px);
+    background-color: #ffe4e1;
+}
+
+.coworking-card .feature-icon {
+    font-size: 2.5em;
+    margin-bottom: 10px;
+}
+
+.coworking-card h4 {
+    color: #8b6b4d;
+    font-size: 1.3em;
+    margin-bottom: 10px;
+    font-weight: 400;
+}
+
+.coworking-card p {
+    color: #a3876f;
+    font-size: 0.95em;
+}
+
+.tariffs {
+    margin: 60px 0;
+    text-align: center;
+}
+
+.tariffs h2 {
+    color: #8b6b4d;
+    font-size: 2.2em;
+    font-weight: 350;
+    margin-bottom: 30px;
+    text-align: center;
+}
+
+.tariffs-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 25px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.tariff-card {
+    flex: 0 1 auto;
+    width: 300px;
+    min-width: 200px;
+    background: linear-gradient(145deg, #ffeae5, #ffe1d9);
+    border-radius: 25px;
+    padding: 30px 20px;
+    text-align: center;
+    transition: all 0.3s ease;
+    position: relative;
+    border: 2px solid #fff9f0;
+    outline: 1px solid #ecc9c0;
+    outline-offset: 2px;
+    box-shadow: 0 8px 20px rgba(210, 180, 140, 0.2);
+}
+
+.tariff-card::before {
+    content: '✧';
+    position: absolute;
+    top: -10px;
+    left: 15px;
+    font-size: 50px;
+    color: #ac7a6e;
+    opacity: 0.3;
+    transform: rotate(-15deg);
+}
+
+.tariff-card::after {
+    content: '✧';
+    position: absolute;
+    bottom: -10px;
+    right: 15px;
+    font-size: 50px;
+    color: #ac7a6e;
+    opacity: 0.3;
+    transform: rotate(15deg);
+}
+
+.tariff-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 20px 30px rgba(210, 180, 140, 0.3);
+}
+
+.tariff-card:hover::before,
+.tariff-card:hover::after {
+    opacity: 0.6;
+    transform: rotate(0deg) scale(1.1);
+}
+
+.tariff-card:only-child {
+    width: 250px;
+    margin: 0 auto;
+}
+
+.tariffs-container:has(.tariff-card:nth-child(2):last-child) {
+    gap: 40px;
+}
+
+.tariff-card h4 {
+    color: #7a5a44;
+    font-size: 1.6em;
+    font-weight: 500;
+    margin-bottom: 15px;
+    letter-spacing: 0.5px;
+}
+
+.tariff-card .price {
+    font-size: 2.3em;
+    color: #5e4b3c;
+    margin: 15px 0;
+    font-weight: 300;
+    position: relative;
+    display: inline-block;
+    padding: 0 15px;
+}
