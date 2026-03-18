@@ -1,5 +1,11 @@
 <nav>
-    <a href="/">Главная</a>
-    <a href="menu/">Меню</a>
-    <a href="coworking/">Коворкинг-зона</a>
+    <a href="{% url 'home:home' %}" {% if request.resolver_match.app_name == 'home' %}class="active"{% endif %}>
+        Главная
+    </a>
+    <a href="{% url 'menu:menu' %}" {% if request.resolver_match.app_name == 'menu' %}class="active"{% endif %}>
+        Меню
+    </a>
+    <a href="{% url 'coworking:coworking' %}" {% if request.resolver_match.app_name == 'coworking' %}class="active"{% endif %}>
+        Коворкинг-зона
+    </a>
 </nav>
