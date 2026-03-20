@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'apps.menu',
     'apps.coworking',
     'apps.booking',
+    'apps.users',
 ]
 
 MIDDLEWARE = [
@@ -122,3 +123,7 @@ USE_TZ = True
 
 STATIC_URL = 'static/'
 STATICFILES_DIRS = (os.path.join(BASE_DIR, "static"),)
+
+LOGIN_URL = 'users:login'
+LOGIN_REDIRECT_URL = 'users:profile'
+LOGOUT_REDIRECT_URL = 'home:home'

@@ -1,7 +1,8 @@
 from django.shortcuts import render
+from django.contrib.auth.decorators import login_required
 from .models import MenuItem
 
-
+@login_required
 def menu_page(request):
     template = 'menu/menu.html'
     title = "Меню - Уютная кофейня"

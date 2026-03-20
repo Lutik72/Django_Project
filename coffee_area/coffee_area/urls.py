@@ -20,4 +20,6 @@ urlpatterns = [
     
     # Приложение бронирования
     path('booking/', include('apps.booking.urls')),
+
+    path('users/', include('apps.users.urls')),
 ]

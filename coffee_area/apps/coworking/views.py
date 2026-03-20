@@ -1,7 +1,8 @@
 # from .models import Tariff
 from django.shortcuts import render
+from django.contrib.auth.decorators import login_required
 
-
+@login_required 
 def coworking_page(request):
     template = "coworking/coworking.html"
     title = "Уютная кофейня"

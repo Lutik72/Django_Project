@@ -8,4 +8,17 @@
     <a href="{% url 'coworking:coworking' %}" {% if request.resolver_match.app_name == 'coworking' %}class="active"{% endif %}>
         Коворкинг-зона
     </a>
+    
+    {% if user.is_authenticated %}
+        <a href="{% url 'users:profile' %}" {% if request.resolver_match.app_name == 'users' %}class="active"{% endif %}>
+            <i class="fas fa-user"></i> {{ user.username }}
+        </a>
+    {% else %}
+        <a href="{% url 'users:login' %}">
+            <i class="fas fa-sign-in-alt"></i> Вход
+        </a>
+        <a href="{% url 'users:register' %}">
+            <i class="fas fa-user-plus"></i> Регистрация
+        </a>
+    {% endif %}
 </nav>
