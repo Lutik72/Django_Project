@@ -427,6 +427,19 @@ footer {
     border: 1px solid #c3e6cb;
 }
 
+/* Ссылка "Забыли пароль" */
+.forgot-password a {
+    color: #b1947a;
+    font-size: 0.85em;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.forgot-password a:hover {
+    color: #8b6b4d;
+    text-decoration: underline;
+}
+
 /* Адаптивность для мобильных */
 @media (max-width: 600px) {
     .profile-card {

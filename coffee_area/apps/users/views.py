@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
-from django.contrib.auth import login, authenticate, logout
+from django.contrib.auth import login, authenticate, logout, update_session_auth_hash
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth.forms import PasswordChangeForm
 from django.contrib import messages
 from .forms import RegisterForm, LoginForm
 import random
@@ -63,7 +64,7 @@ def login_view(request):
 @login_required
 def profile_view(request):
     """Личный кабинет"""
-    
+
     subtitle = [
         "Добро пожаловать туда, где пахнет счастьем и корицей.",
         "Кофе — это маленькое удовольствие в большой чашке.",
@@ -91,6 +92,29 @@ def profile_view(request):
         "subtitle": random_quote,
     }
     return render(request, "users/profile.html", context)
+
+
+def change_password_view(request):
+    """Смена пароля"""
+
+    if request.method == "POST":
+        form = PasswordChangeForm(request.user, request.POST)
+        if form.is_valid():
+            user = form.save()
+            # Обновляем сессию, чтобы пользователь не вышел после смены пароля
+            update_session_auth_hash(request, user)
+            messages.success(request, "Пароль успешно изменен!")
+            return redirect("users:profile")
+        else:
+            messages.error(request, "Ошибка. Проверьте правильность ввода.")
+    else:
+        form = PasswordChangeForm(request.user)
+
+    context = {
+        "form": form,
+        "title": "Смена пароля",
+    }
+    return render(request, "users/change_password.html", context)
 
 
 def logout_view(request):
