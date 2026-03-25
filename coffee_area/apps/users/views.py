@@ -122,4 +122,4 @@ def logout_view(request):
 
     logout(request)
     messages.info(request, "Вы вышли из аккаунта.")
-    return redirect("home:home")
+    return redirect("users:login")
