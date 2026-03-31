@@ -60,28 +60,6 @@ def login_view(request):
     context = {"form": form, "title": "Вход"}
     return render(request, "users/login.html", context)
 
-def change_password_view(request):
-    """Смена пароля"""
-
-    if request.method == "POST":
-        form = PasswordChangeForm(request.user, request.POST)
-        if form.is_valid():
-            user = form.save()
-            # Обновляем сессию, чтобы пользователь не вышел после смены пароля
-            update_session_auth_hash(request, user)
-            messages.success(request, "Пароль успешно изменен!")
-            return redirect("users:profile")
-        else:
-            messages.error(request, "Ошибка. Проверьте правильность ввода.")
-    else:
-        form = PasswordChangeForm(request.user)
-
-    context = {
-        "form": form,
-        "title": "Смена пароля",
-    }
-    return render(request, "users/change_password.html", context)
-
 
 def logout_view(request):
     """Выход из аккаунта"""
@@ -121,3 +99,26 @@ def profile_view(request):
         "subtitle": random_quote,
     }
     return render(request, "users/profile.html", context)
+
+@login_required
+def change_password_view(request):
+    """Смена пароля"""
+
+    if request.method == "POST":
+        form = PasswordChangeForm(request.user, request.POST)
+        if form.is_valid():
+            user = form.save()
+            # Обновляем сессию, чтобы пользователь не вышел после смены пароля
+            update_session_auth_hash(request, user)
+            messages.success(request, "Пароль успешно изменен!")
+            return redirect("users:profile")
+        else:
+            messages.error(request, "Ошибка. Проверьте правильность ввода.")
+    else:
+        form = PasswordChangeForm(request.user)
+
+    context = {
+        "form": form,
+        "title": "Смена пароля",
+    }
+    return render(request, "users/change_password.html", context)

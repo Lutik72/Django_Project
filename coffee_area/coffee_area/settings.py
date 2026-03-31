@@ -26,8 +26,12 @@ SECRET_KEY = 'django-insecure-t577e(wbu_%9t-%9kxm4!&%u$)2nau^n0bq7)3tmc!i-vbl_a&
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
-
+ALLOWED_HOSTS = [
+    'localhost',
+    '127.0.0.1',
+    '[::1]',
+    'testserver',
+]
 
 # Application definition
 
@@ -126,7 +130,7 @@ STATICFILES_DIRS = (os.path.join(BASE_DIR, "static"),)
 
 LOGIN_URL = 'users:login'
 LOGIN_REDIRECT_URL = 'users:profile'
-LOGOUT_REDIRECT_URL = 'home:home'
+LOGOUT_REDIRECT_URL = '/'
 
 #  подключаем движок filebased.EmailBackend
 EMAIL_BACKEND = 'django.core.mail.backends.filebased.EmailBackend'
