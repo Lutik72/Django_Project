@@ -45,12 +45,17 @@ python manage.py test
 # запуск для конкретного приложения
 python manage.py test apps.users
 
-# запуск тестов только представлений
-python manage.py test apps.users.tests.test_views
+#Реализованные тесты в проекте
+# запуск тестов только представлений приложения users
+python manage.py test apps.users.tests.test_views --verbosity=2
 
-# запуск тестов только ссылок
-python manage.py test apps.users.tests.test_urls
+# запуск тестов только ссылок приложения users
+python manage.py test apps.users.tests.test_urls -v2
+
+#запуск тестов только форм приложения users
+python manage.py test apps.users.tests.test_forms -v2
 ```
+> **--verbosity** - это уровень детализации вывода тестов
 
 ## 🚧 В разработке
 
