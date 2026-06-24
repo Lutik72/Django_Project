@@ -5,11 +5,14 @@ from .models import Booking
 class BookingAdmin(admin.ModelAdmin):
     list_display = ['name', 'date', 'time', 'guests', 'status', 'created_at']
     list_filter = ['status', 'date']
-    search_fields = ['name', 'phone', 'email']
+    search_fields = ['name', 'phone', 'email', 'user__username']  # поиск по имени пользователя
     list_editable = ['status']
     readonly_fields = ['created_at']
     
     fieldsets = (
+        ('Пользователь', {
+            'fields': ('user',)
+        }),
         ('Контактные данные', {
             'fields': ('name', 'phone', 'email')
         }),

@@ -1,20 +1,9 @@
-# from django.http import HttpResponse
 from django.shortcuts import render, redirect
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from .forms import BookingForm
+from .models import Booking  # ← ДОБАВЬ ЭТУ СТРОКУ
 import random
-
-# пока страница ещё в разработке
-# def booking_development(request):
-#     """Страница бронирования в разработке"""
-#     html = """
-#     <h1>🚧 Страница в разработке</h1>
-#     <p>Раздел бронирования скоро появится!</p>
-#     <p><a href="/">Вернуться на главную</a></p>
-#     <p><a href="/coworking/">Вернуться в коворкинг</a></p>
-#     """
-#     return HttpResponse(html)
 
 @login_required
 def booking_page(request):
@@ -42,27 +31,36 @@ def booking_page(request):
     random_quote = random.choice(subtitle)
 
     if request.method == "POST":
-        # Если форма отправлена
         form = BookingForm(request.POST)
         if form.is_valid():
-            # Сохраняем заявку
-            booking = form.save()
-            # Добавляем сообщение об успехе
-            messages.success(
-                request,
-                "Спасибо! Ваша заявка принята. Мы свяжемся с вами для подтверждения.",
-            )
-            # Перенаправляем на ту же страницу, чтобы очистить форму
-            return redirect("booking:booking")
+            booking = form.save(commit=False)
+            booking.user = request.user
+            booking.save()
+            
+            messages.success(request, "Спасибо! Ваша заявка принята.")
+            return redirect("booking:my_bookings")
     else:
-        # Если просто открыли страницу - пустая форма
         form = BookingForm()
-
-    # Контекст для шаблона
+    
     context = {
         "form": form,
         "title": "Бронирование места в коворкинге",
         "subtitle": random_quote,
     }
-
+    
     return render(request, "booking/booking.html", context)
+
+
+@login_required
+def my_bookings_view(request):
+    """История бронирований пользователя"""
+    
+    bookings = Booking.objects.filter(user=request.user).order_by('-created_at')
+    
+    context = {
+        'bookings': bookings,
+        'total_bookings': bookings.count(),
+        'title': 'Мои бронирования',
+    }
+    
+    return render(request, 'booking/my_bookings.html', context)

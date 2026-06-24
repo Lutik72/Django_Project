@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="ru">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,9 +8,8 @@
     <link rel="stylesheet" href="{% static 'home/css/style.css' %}">
     <title>{{ title }}</title>
 </head>
-
 <body>
-    <header>
+<header>
         <div style="display: flex; justify-content: center; width: 100%;">
             <svg width="304" height="48" viewBox="0 0 304 48" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path
@@ -21,24 +19,24 @@
         </div>
         {% include 'includes/header.html' %}
     </header>
-
+    
     <div class="container">
         {% include 'includes/nav.html' %}
-
+        
         <div class="profile-container">
             <div class="profile-card">
                 <h1 class="profile-title">Мой профиль</h1>
-
+                
                 {% if messages %}
                 <div class="messages">
                     {% for message in messages %}
-                    <div class="message message-success">
+                    <div class="message message-{{ message.tags }}">
                         {{ message }}
                     </div>
                     {% endfor %}
                 </div>
                 {% endif %}
-
+                
                 <div class="profile-info">
                     <div class="info-item">
                         <i class="fas fa-user"></i>
@@ -61,19 +59,27 @@
                         <span>{{ user.last_login|date:"d.m.Y H:i" }}</span>
                     </div>
                 </div>
-
-                <div class="profile-actions">
-                    <a href="{% url 'booking:booking' %}" class="btn btn-primary">Мои бронирования</a>
-                    <a href="{% url 'users:change_password' %}" class="btn btn-secondary"><i class="fas fa-key"></i> Сменить пароль</a>
-                    <a href="{% url 'users:logout' %}" class="btn btn-secondary">Выйти</a>
+                
+                <div class="profile-actions-grid">
+                    <a href="{% url 'users:profile_edit' %}" class="btn btn-secondary">
+                        <i class="fas fa-pencil-alt"></i> Редактировать профиль
+                    </a>
+                    <a href="{% url 'users:change_password' %}" class="btn btn-secondary">
+                        <i class="fas fa-key"></i> Сменить пароль
+                    </a>
+                    <a href="{% url 'booking:my_bookings' %}" class="btn btn-primary">
+                        <i class="fas fa-calendar-check"></i> Мои бронирования
+                    </a>
+                    <a href="{% url 'users:logout' %}" class="btn btn-danger">
+                        <i class="fas fa-sign-out-alt"></i> Выйти
+                    </a>
                 </div>
             </div>
         </div>
     </div>
-
+    
     <footer>
         {% include 'includes/footer.html' %}
     </footer>
 </body>
-
 </html>

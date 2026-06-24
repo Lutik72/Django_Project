@@ -4,6 +4,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms import PasswordChangeForm
 from django.contrib import messages
 from .forms import RegisterForm, LoginForm
+from .forms import UserUpdateForm
 import random
 
 
@@ -122,3 +123,24 @@ def change_password_view(request):
         "title": "Смена пароля",
     }
     return render(request, "users/change_password.html", context)
+
+@login_required
+def profile_edit_view(request):
+    """Редактирование профиля"""
+    
+    if request.method == 'POST':
+        form = UserUpdateForm(request.POST, instance=request.user)
+        if form.is_valid():
+            form.save()
+            messages.success(request, 'Профиль успешно обновлён!')
+            return redirect('users:profile')
+        else:
+            messages.error(request, 'Ошибка при обновлении профиля. Проверьте введённые данные.')
+    else:
+        form = UserUpdateForm(instance=request.user)
+    
+    context = {
+        'form': form,
+        'title': 'Редактирование профиля',
+    }
+    return render(request, 'users/profile_edit.html', context)

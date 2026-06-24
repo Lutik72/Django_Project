@@ -1,0 +1,207 @@
+{% extends 'base.html' %}
+
+{% block title %}{{ title }}{% endblock %}
+
+{% block content %}
+<div class="bookings-container">
+    <div class="bookings-header">
+        <a href="{% url 'booking:booking' %}" class="btn btn-primary">Забронировать место</a>
+        <h1 class="bookings-title">Мои бронирования</h1>
+        <p class="bookings-subtitle">Всего заявок: {{ total_bookings }}</p>
+    </div>
+
+    {% if not bookings %}
+    <div class="empty-state">
+        <i class="fas fa-calendar-plus" style="font-size: 60px; color: #d4a373;"></i>
+        <h3>У вас пока нет бронирований</h3>
+        <p>Хотите забронировать место в коворкинге?</p>
+        <a href="{% url 'booking:booking' %}" class="btn btn-primary">
+            Забронировать место
+        </a>
+    </div>
+    {% else %}
+    <div class="bookings-list">
+        {% for booking in bookings %}
+        <div class="booking-card">
+            <div class="booking-header">
+                <div class="booking-info">
+                    <span class="booking-date">
+                        <i class="fas fa-calendar-day"></i>
+                        {{ booking.date|date:"d.m.Y" }}
+                    </span>
+                    <span class="booking-time">
+                        <i class="fas fa-clock"></i>
+                        {{ booking.time|time:"H:i" }}
+                    </span>
+                    <span class="booking-guests">
+                        <i class="fas fa-user"></i>
+                        {{ booking.guests }} чел.
+                    </span>
+                    {% if booking.tariff %}
+                    <span class="booking-tariff">
+                        <i class="fas fa-tag"></i>
+                        {{ booking.tariff.name }}
+                    </span>
+                    {% endif %}
+                </div>
+                <span class="booking-status status-{{ booking.status }}">
+                    {{ booking.get_status_display }}
+                </span>
+            </div>
+
+            <div class="booking-details">
+                <p><strong>Имя:</strong> {{ booking.name }}</p>
+                <p><strong>Телефон:</strong> {{ booking.phone }}</p>
+                <p><strong>Email:</strong> {{ booking.email }}</p>
+                {% if booking.tariff %}
+                <p><strong>Тариф:</strong> {{ booking.tariff.name }}</p>
+                {% endif %}
+                {% if booking.comment %}
+                <p><strong>Комментарий:</strong> {{ booking.comment }}</p>
+                {% endif %}
+                <p class="booking-created">
+                    <small>Создано: {{ booking.created_at|date:"d.m.Y H:i" }}</small>
+                </p>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+    {% endif %}
+</div>
+
+<style>
+    .bookings-container {
+        max-width: 900px;
+        margin: 40px auto;
+    }
+
+    .bookings-header {
+        text-align: center;
+        margin-bottom: 40px;
+    }
+
+    .bookings-title {
+        color: #8b6b4d;
+        font-size: 2.2em;
+        font-weight: 300;
+    }
+
+    .bookings-subtitle {
+        color: #b1947a;
+        font-size: 1.1em;
+    }
+
+    .booking-card {
+        background: white;
+        border-radius: 20px;
+        padding: 25px;
+        margin-bottom: 20px;
+        box-shadow: 0 5px 20px rgba(139, 107, 77, 0.08);
+        border: 1px solid #ffe4e1;
+    }
+
+    .booking-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 15px;
+        padding-bottom: 15px;
+        border-bottom: 1px solid #ffe4e1;
+    }
+
+    .booking-info {
+        display: flex;
+        gap: 20px;
+        flex-wrap: wrap;
+    }
+
+    .booking-info span {
+        color: #5e4b3c;
+    }
+
+    .booking-info i {
+        color: #d4a373;
+        margin-right: 5px;
+    }
+
+    .booking-tariff {
+        color: #8b6b4d !important;
+        font-weight: 500;
+    }
+
+    .booking-status {
+        padding: 5px 15px;
+        border-radius: 20px;
+        font-size: 0.9em;
+        font-weight: 500;
+    }
+
+    .status-new {
+        background-color: #fff3cd;
+        color: #856404;
+    }
+
+    .status-confirmed {
+        background-color: #d4edda;
+        color: #155724;
+    }
+
+    .status-cancelled {
+        background-color: #f8d7da;
+        color: #721c24;
+    }
+
+    .booking-details p {
+        margin: 5px 0;
+        color: #5e4b3c;
+    }
+
+    .booking-details p strong {
+        color: #8b6b4d;
+        width: 100px;
+        display: inline-block;
+    }
+
+    .booking-created {
+        color: #b1947a !important;
+        margin-top: 10px !important;
+        font-size: 0.85em !important;
+    }
+
+    .empty-state {
+        text-align: center;
+        padding: 60px 20px;
+        background: white;
+        border-radius: 20px;
+        border: 1px solid #ffe4e1;
+    }
+
+    .empty-state h3 {
+        color: #5e4b3c;
+        margin: 20px 0 10px;
+    }
+
+    .empty-state p {
+        color: #b1947a;
+        margin-bottom: 20px;
+    }
+
+    @media (max-width: 600px) {
+        .booking-header {
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 10px;
+        }
+
+        .booking-info {
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .booking-details p strong {
+            width: auto;
+            display: inline;
+        }
+    }
+</style>
+{% endblock %}
